@@ -59,6 +59,9 @@ POSSIBILITY OF SUCH DAMAGE.
 #define BMS_STATE_WAIT_FOR_STOP_BYTE    0x07
 #define BMS_STATE_ERROR                 0xFF
 
+// replace min() because it doesnt work on the esp32 when the arguments have different data types
+#define __min(a,b) ((a)<(b)?(a):(b))
+
 
 typedef struct SoftwareVersion {
     uint8_t major;

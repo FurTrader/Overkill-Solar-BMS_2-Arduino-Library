@@ -485,14 +485,14 @@ void OverkillSolarBms2::debug() {
     // Serial.println(get_num_ntcs(), DEC);
 
     // Serial.println("Temperatures:");
-    for (uint8_t i=0; i < min(BMS_MAX_NTCs, get_num_ntcs()); i++) {
+    for (uint8_t i=0; i < __min(BMS_MAX_NTCs, get_num_ntcs()); i++) {
         // Serial.print("  ");
         // Serial.print(get_ntc_temperature(i), 1);
         // Serial.println(" deg C");
     }
 
     // Serial.println("Cell Voltages & Balance Status: ");
-    for (uint8_t i=0; i < min(BMS_MAX_CELLS, get_num_cells()); i++) {
+    for (uint8_t i=0; i < __min(BMS_MAX_CELLS, get_num_cells()); i++) {
         // Serial.print("  ");
         // Serial.print(get_cell_voltage(i), 3);  // Returns the cell voltage, in volts
         // Serial.print("V  ");
@@ -2072,7 +2072,7 @@ void OverkillSolarBms2::handle_rx_0x03() {
     m_0x03_basic_info.num_cells        = m_rx_data[21];  // 21    # of batteries in series
     m_0x03_basic_info.num_ntcs         = m_rx_data[22];  // 22    # of NTCs
 
-    for (uint8_t i=0; i < min(BMS_MAX_NTCs, m_0x03_basic_info.num_ntcs); i++) {
+    for (uint8_t i=0; i < __min(BMS_MAX_NTCs, m_0x03_basic_info.num_ntcs); i++) {
         uint8_t ntc_index = 23 + (i * 2);
         m_0x03_basic_info.ntc_temps[i] = (uint16_t)(m_rx_data[ntc_index] << 8) | (uint16_t)(m_rx_data[ntc_index + 1]);
     }
@@ -2083,7 +2083,7 @@ void OverkillSolarBms2::handle_rx_0x04() {
     #ifdef BMS_OPTION_DEBUG_STATE_MACHINE
         // Serial.println("Got an 0x04 Cell Voltage msg");
     #endif
-    for (uint8_t i=0; i < min(BMS_MAX_CELLS, m_0x03_basic_info.num_cells); i++) {
+    for (uint8_t i=0; i < __min(BMS_MAX_CELLS, m_0x03_basic_info.num_cells); i++) {
         m_0x04_cell_voltages[i] = (uint16_t)(m_rx_data[i * 2] << 8) | (uint16_t)(m_rx_data[(i * 2) + 1]);
     }
     m_last_0x04_timestamp = millis();
@@ -2091,7 +2091,7 @@ void OverkillSolarBms2::handle_rx_0x04() {
 
 void OverkillSolarBms2::handle_rx_0x05() {
     m_0x05_bms_name = String("");
-    for (uint8_t i=0; i < min(BMS_MAX_RX_DATA_LEN, m_rx_length); i++) {
+    for (uint8_t i=0; i < __min(BMS_MAX_RX_DATA_LEN, m_rx_length); i++) {
         m_0x05_bms_name += (char)m_rx_data[i];
     }
 }
