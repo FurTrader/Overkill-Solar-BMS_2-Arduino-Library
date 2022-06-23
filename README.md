@@ -1,6 +1,6 @@
 temporary note: this is the full read and write library. the documentation and example code needs to be updated.
 
-Overkill Solar BMS Monitor Library
+Overkill Solar BMS2 Library
 ==================================
 
 Introduction
