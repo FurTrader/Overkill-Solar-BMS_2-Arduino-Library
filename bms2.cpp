@@ -366,17 +366,17 @@ void OverkillSolarBms2::set_0xE1_mosfet_control(bool charge, bool discharge) {
         // Serial.println("Set 0xE1 MOSFET Control");
     #endif
     if (charge) {
-        m_0xE1_mosfet_control[0] &= 0b10;  // Disable bit zero
+        m_0xE1_mosfet_control[1] &= 0b10;  // Disable bit zero
     }
     else {
-        m_0xE1_mosfet_control[0] |= 0b01;  // Enable bit zero
+        m_0xE1_mosfet_control[1] |= 0b01;  // Enable bit zero
     }
 
     if (discharge) {
-        m_0xE1_mosfet_control[0] &= 0b01;  // Disable bit 1
+        m_0xE1_mosfet_control[1] &= 0b01;  // Disable bit 1
     }
     else {
-        m_0xE1_mosfet_control[0] |= 0b10;  // Enable bit 1
+        m_0xE1_mosfet_control[1] |= 0b10;  // Enable bit 1
     }
 
     write(BMS_WRITE, BMS_REG_CTL_MOSFET, m_0xE1_mosfet_control, 2);
@@ -384,20 +384,20 @@ void OverkillSolarBms2::set_0xE1_mosfet_control(bool charge, bool discharge) {
 
 void OverkillSolarBms2::set_0xE1_mosfet_control_charge(bool charge) {
     if (charge) {
-        m_0xE1_mosfet_control[0] &= 0b10;  // Disable bit zero
+        m_0xE1_mosfet_control[1] &= 0b10;  // Disable bit zero
     }
     else {
-        m_0xE1_mosfet_control[0] |= 0b01;  // Enable bit zero
+        m_0xE1_mosfet_control[1] |= 0b01;  // Enable bit zero
     }
     write(BMS_WRITE, BMS_REG_CTL_MOSFET, m_0xE1_mosfet_control, 2);
 }
 
 void OverkillSolarBms2::set_0xE1_mosfet_control_discharge(bool discharge) {
     if (discharge) {
-        m_0xE1_mosfet_control[0] &= 0b01;  // Disable bit 1
+        m_0xE1_mosfet_control[1] &= 0b01;  // Disable bit 1
     }
     else {
-        m_0xE1_mosfet_control[0] |= 0b10;  // Enable bit 1
+        m_0xE1_mosfet_control[1] |= 0b10;  // Enable bit 1
     }
     write(BMS_WRITE, BMS_REG_CTL_MOSFET, m_0xE1_mosfet_control, 2);
 }
