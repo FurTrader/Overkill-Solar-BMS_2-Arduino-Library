@@ -51,6 +51,15 @@ This library is capable of returning the following information:
     - Single cell undervoltage protection
     - Single cell overvoltage protection
 
+Hardware compatability
+-----------------------
+ In some combinations, the Arduino's RX activity light will draw the signal too low from the BMS UART.     
+ For an UNO clone, we had to remove the RX LED from the Arduino board.     
+ Other boards have been known to communicate without modification.     
+ The UNO rev3 has buffered status leds and should work fine, for example.     
+ The arduino Mega works well when you use Serial 1,2,or 3.   
+ 3.3v Arduino boards like the promicro always seem to communicate properly with the BMS. An ESP32 is also a good choice.  
+
 "Bare Metal" Disclaimer
 -----------------------
 
