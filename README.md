@@ -53,7 +53,8 @@ This library is capable of returning the following information:
 
 Hardware compatability
 -----------------------
- In some combinations, the Arduino's RX activity light will draw the signal too low from the BMS UART.     
+Some of our BMS models can only drive a very small current when they transmit.   
+ In some combinations, the Arduino's RX activity light will pull the signal too low from the BMS UART.     
  For an UNO clone, we had to remove the RX LED from the Arduino board.     
  Other boards have been known to communicate without modification.     
  The UNO rev3 has buffered status leds and should work fine, for example.     
